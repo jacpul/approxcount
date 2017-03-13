@@ -32,7 +32,7 @@ Test all the parameters to make sure that you've implemented everything.
 
 Perform this work on ukko or akka (other machines may not have enough cores).
 
-Once your code is working, execute the bash one-liners below to gather experimental data. Cut and paste the data into a spreadsheet (one table per sheet). It should import into columns if you do it correctly. Then, calculate the average value for each column, and plot the averages as a series with respect to the changing value.
+Once your code is working, execute the bash one-liners below to gather experimental data. Cut and paste the data into a spreadsheet (one table per sheet). It should import into columns if you do it correctly. Then, calculate the average value for each column, and plot the averages as a series with respect to the changing value. Answer the questions about the data in a text file under headings for each question below.
 
 ### How does the number of threads affect the time to perform sloppy counting?
 
@@ -84,4 +84,4 @@ Now, plot separate line series of the random1 and random2 data points. Don't plo
 
 ## submission
 
-Submit your code and your spreadsheet in a tarball via Moodle by the due date.
+Submit your code, your spreadsheet, and your text answers in a tarball via Moodle by the due date.
