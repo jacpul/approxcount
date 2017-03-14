@@ -36,7 +36,7 @@ Once your code is working, execute the bash one-liners below to gather experimen
 
 ### How does the number of threads affect the time to perform sloppy counting?
 
-Execute the following command:
+Execute the following command (Note when executing this command on ukko or akka first type `bash`):
 
 `rm data*.txt; for threads in 1 2 4 8 16; do ./sloppycount -n 1000000000 -s 1000 -r 10 -m sloppy -t $threads > data${threads}.txt; done; paste data1.txt data2.txt data4.txt data8.txt data16.txt`
 
