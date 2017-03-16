@@ -276,7 +276,7 @@ int main(int argc, char *argv[]) {
 
 		if (check == 1) {
 			/* only print counts if -c option is used */
-			printf("target:\t%lld\tcounter:\t%lld\ttime:\t", counter, target);
+			printf("target:\t%lld\tcounter:\t%lld\ttime:\t", target, counter);
 		}
 
 		printf("%f\n", elapsed);
