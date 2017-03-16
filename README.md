@@ -34,6 +34,12 @@ Perform this work on ukko or akka (other machines may not have enough cores).
 
 Once your code is working, execute the bash one-liners below to gather experimental data. Cut and paste the data into a spreadsheet (one table per sheet). It should import into columns if you do it correctly. Then, calculate the average value for each column, and plot the averages as a series with respect to the changing value. Answer the questions about the data in a text file under headings for each question below.
 
+**NOTE:** if your login shell is not `bash`, you will need to run the command `bash` before running the testing commands below. To find out what your shell is, execute:
+
+```
+$ echo $SHELL
+```
+
 ### How does the number of threads affect the time to perform sloppy counting?
 
 Execute the following command (Note when executing this command on ukko or akka first type `bash`):
@@ -54,7 +60,7 @@ Create a line plot showing how runtime changes as the sloppiness value increases
 
 Execute the following command:
 
-`rm data*.txt; for threads in 1 2 4 8; do ./sloppycount -n 10000000 -s 1 -r 10 -m noslop -t $threads > data${slop}.txt; done; paste data1.txt data2txt data4.txt data8.txt`
+`rm data*.txt; for threads in 1 2 4 8; do ./sloppycount -n 10000000 -s 1 -r 10 -m noslop -t $threads > data${threads}.txt; done; paste data1.txt data2.txt data4.txt data8.txt`
 
 Create a line plot showing how runtime changes with an increase in the number of threads. How does the number of threads affect runtime when there's no slop?
 
