@@ -40,43 +40,33 @@ Once your code is working, execute the bash one-liners below to gather experimen
 $ echo $SHELL
 ```
 
-### How does the number of threads affect the time to perform sloppy counting?
+### test1.sh: How does the number of threads affect the time to perform sloppy counting?
 
-Execute the following command (Note when executing this command on ukko or akka first type `bash`):
-
-`rm data*.txt; for threads in 1 2 4 8 16; do ./sloppycount -n 1000000000 -s 1000 -r 10 -m sloppy -t $threads > data${threads}.txt; done; paste data1.txt data2.txt data4.txt data8.txt data16.txt`
+Execute `test1.sh` on ukko or akka. 
 
 Create a line plot showing how runtime changes as more threads are added. What do you observe? How does runtime change?
 
-### How does the sloppiness value change the runtime?
+### test2.sh: How does the sloppiness value change the runtime?
 
-Execute the following command:
-
-`rm data*.txt; for slop in 100 200 300 400 500 600; do ./sloppycount -n 1000000000 -s $slop -r 10 -m sloppy -t 4 > data${slop}.txt; done; paste data100.txt data200.txt data300.txt data400.txt data500.txt data600.txt`
+Execute `test2.sh` on ukko or akka.
 
 Create a line plot showing how runtime changes as the sloppiness value increases. How does runtime change as the sloppiness value increases?
 
-### How does the number of threads affect runtime with no slop?
+### test3.sh: How does the number of threads affect runtime with no slop?
 
-Execute the following command:
-
-`rm data*.txt; for threads in 1 2 4 8; do ./sloppycount -n 10000000 -s 1 -r 10 -m noslop -t $threads > data${threads}.txt; done; paste data1.txt data2.txt data4.txt data8.txt`
+Execute `test3.sh` on ukko or akka.
 
 Create a line plot showing how runtime changes with an increase in the number of threads. How does the number of threads affect runtime when there's no slop?
 
-### How does random1 fare?
+### test4.sh: How does random1 fare?
 
-Execute the following command:
-
-`rm data*.txt; for threads in 1 2 4 8 16; do ./sloppycount -n 1000000000 -s 1000 -r 10 -m random1 -t $threads > data${threads}.txt; done; paste data1.txt data2.txt data4.txt data8.txt data16.txt`
+Execute `test4.sh` on ukko or akka.
 
 Create a line plot showing how runtime changes with an increase in the number of threads. How does random1 change as the number of threads increase?
 
-### How does random2 fare?
+### test5.sh: How does random2 fare?
 
-Execute the following command:
-
-`rm data*.txt; for threads in 1 2 4 8 16; do ./sloppycount -n 1000000000 -s 1000 -r 10 -m random2 -t $threads > data${threads}.txt; done; paste data1.txt data2.txt data4.txt data8.txt data16.txt`
+Execute `test5.sh` on ukko or akka.
 
 Create a line plot showing how runtime changes with an increase in the number of threads. How does runtime change as the number of threads increase?
 
@@ -86,7 +76,11 @@ Combine the results for sloppy, random1 and random2. In a paragraph, compare and
 
 ### Compare random methods
 
-Now, plot separate line series of the random1 and random2 data points. Don't plot averages; instead the y-axis should show time but the x-axis will have one data point per observation. What do you observe about the smoothness of random1 vs. random2? Which is faster? Why do you think that is?
+Now, plot separate line series of the random1 and random2 data points (from `test4.sh` and `test5.sh`). Don't plot averages; instead the y-axis should show time but the x-axis will have one data point per observation. What do you observe about the smoothness of random1 vs. random2? Which is faster? Why do you think that is?
+
+## Example graphs
+
+In the `img/` directory there are sample images to show what the general trends should look like. Data for the random tests may vary more widely due to randomness. If you do not see similar trends (especially for sloppy counting), check to make sure that your local counting happens in a tight loop -- in other words, your counting threads do nothing but count until they've reached the slop value and only then add it to the global value.
 
 ## submission
 
