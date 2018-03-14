@@ -9,19 +9,18 @@ In this lab, you'll:
 
 ## implementation tasks
 
-**Hint: Write code for every example of 'FIXME' in the base program.**
+**Hint: Write code for every example of 'FIXME' in the base program. We suggest you fix the FIXMEs in the following order (but you will have to figure out which FIXME will solve each task):**
 
 In order, these are:
-
- 1. Code for the function 'sloppy'. This function performs sloppy counting where it counts a local value up until it reaches the slop value specified in the thread args pointer. Then it acquires a global mutex, adds it to the global counter, and releases. 'sloppy' should **not** add its result to the global total if the total has already reached the value **target**. **NOTE**: For the 'random1' mode, the slop value is a random number between 1 and (2 * slop) (where 'slop' is specified on the command line). A random slop value is only rolled once per thread. There is no function 'random1' -- that's because you can use the function 'sloppy' to perform the task for 'random1'. Random slop values can result in counts that are slightly higher than the target value.
- 1. Code for the function 'random2'. Unlike for 'random1', 'random2' generates a new slop value using rand() for every local count up to the slop value. Like for 'random1', the slop value should be between 1 and (2 * slop) (the -s parameter on the command line).
+ 1. Add code to join on each created pthread before gathering timing statistics. 
  1. Code for the function 'noslop'. This function uses a mutex to protect the global counter value and increments it only by 1 each round.
  1. Add a call to pthread\_create to make a sloppy thread.
+ 1. Code for the function 'sloppy'. This function performs sloppy counting where it counts a local value up until it reaches the slop value specified in the thread args pointer. Then it acquires a global mutex, adds it to the global counter, and releases. 'sloppy' should **not** add its result to the global total if the total has already reached the value **target**. **NOTE**: For the 'random1' mode, the slop value is a random number between 1 and (2 * slop) (where 'slop' is specified on the command line). A random slop value is only rolled once per thread. There is no function 'random1' -- that's because you can use the function 'sloppy' to perform the task for 'random1'. Random slop values can result in counts that are slightly higher than the target value.
  1. Create code using rand() to acquire a proper random number for 'random1' mode.
  1. Add a call to pthread\_create to make a new random1 thread.
  1. Add a call to pthread\_create to create a new random2 thread. (The 'random2' function should make calls to rand() after each local count loop.)
- 1. Add code to join on each created pthread before gathering timing statistics. 
-
+ 1. Code for the function 'random2'. Unlike for 'random1', 'random2' generates a new slop value using rand() for every local count up to the slop value. Like for 'random1', the slop value should be between 1 and (2 * slop) (the -s parameter on the command line).
+ 
 ## experiments and analysis
 
 Test that your code is working by building your program using 'build.sh' and by issuing commands, e.g.:
