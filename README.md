@@ -83,4 +83,4 @@ In the `img/` directory there are sample images to show what the general trends 
 
 ## submission
 
-Submit your code, your spreadsheet, and your text answers in a tarball via Moodle by the due date.
+Submit your code, your spreadsheet, and your text answers in a tarball via the course website by the due date.
