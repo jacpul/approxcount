@@ -31,7 +31,7 @@ Test all the parameters to make sure that you've implemented everything.
 
 Perform this work on ukko or akka (other machines may not have enough cores).
 
-Once your code is working, execute the bash one-liners below to gather experimental data. Cut and paste the data into a spreadsheet (one table per sheet). It should import into columns if you do it correctly. Then, calculate the average value for each column, and plot the averages as a series with respect to the changing value. Answer the questions about the data in a text file under headings for each question below.
+Once your code is working, execute the bash scripts below to gather experimental data. Cut and paste the data into a spreadsheet (one table per sheet). It should import into columns if you do it correctly. Then, calculate the average value for each column, and plot the averages as a series with respect to the changing value. Answer the questions about the data in a text file under headings for each question below.
 
 **NOTE:** if your login shell is not `bash`, you will need to run the command `bash` before running the testing commands below. To find out what your shell is, execute:
 
