@@ -97,20 +97,20 @@ Combine the results for sloppy and noslop.
 
 ### Tasks & Questions
 
-10. Make a graph showing sloppy vs. noslop runtime.
+11. Make a graph showing sloppy vs. noslop runtime.
 
 In a paragraph, compare and contrast the methods. Make sure you explain:
 
-11. Why do you think you're seeing the results you are? 
-12. Which is fastest? Why?
-13. Which is slowest? Why?
-14. Which is most accurate? Why?
+12. Why do you think you're seeing the results you are? 
+13. Which is fastest? Why?
+14. Which is slowest? Why?
+15. Which is most accurate? Why?
  
 ### Compare random methods
 
-15. Now, plot separate line series of the random1 and random2 data points (from `test4.sh` and `test5.sh`). Don't plot averages; instead the y-axis should show time but the x-axis will have one data point per observation (one line per experiment). 
-16. What do you observe about the smoothness of random1 vs. random2? Explain why things are the way they are.
-17. Which is faster? Why?
+16. Now, plot separate line series of the random1 and random2 data points (from `test4.sh` and `test5.sh`). Don't plot averages; instead the y-axis should show time but the x-axis will have one data point per observation (one line per experiment). 
+17. What do you observe about the smoothness of random1 vs. random2? Explain why things are the way they are.
+18. Which is faster? Why?
 
 ## Example graphs
 
