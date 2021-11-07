@@ -1,9 +1,9 @@
-# sloppycount
-A lab exercise exploring sloppy counting.
+# approxcount
+A lab exercise exploring approximate (i.e., sloppy) counting.
 
 In this lab, you'll:
 
- * implement a few ways of doing sloppy counting (and one non-sloppy way). 
+ * implement a few ways of doing approximate counting (and one non-approximate way). 
  * run some experiments to gather data
  * do some performance analysis to see how the options change the behaviors.
 
