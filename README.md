@@ -39,48 +39,83 @@ Once your code is working, execute the bash scripts below to gather experimental
 $ echo $SHELL
 ```
 
-### test1.sh: How does the number of threads affect the time to perform sloppy counting?
+### test1.sh: Sloppy Counting -- Threads vs. Runtime
 
 Execute `test1.sh` on ukko or akka. 
 
-Create a line plot showing how runtime changes as more threads are added. What do you observe? How does runtime change?
+#### Tasks & Questions
 
-### test2.sh: How does the sloppiness value change the runtime?
+0. Create a line plot showing how runtime changes as more threads are added. 
+
+1. What do you observe? 
+
+2. How does runtime change as the number of threads increase?
+
+### test2.sh: Sloppy Counting -- Sloppiness vs. Runtime
 
 Execute `test2.sh` on ukko or akka.
 
-Create a line plot showing how runtime changes as the sloppiness value increases. How does runtime change as the sloppiness value increases?
+### Tasks & Questions
 
-### test3.sh: How does the number of threads affect runtime with no slop?
+3. Create a line plot showing how runtime changes as the sloppiness value increases. 
+
+4. How does runtime change as the sloppiness value increases?
+
+### test3.sh: Accurate Counting: Threads vs. Runtime
 
 Execute `test3.sh` on ukko or akka.
 
-Create a line plot showing how runtime changes with an increase in the number of threads. How does the number of threads affect runtime when there's no slop?
+### Tasks & Questions
 
-### test4.sh: How does random1 fare?
+5. Create a line plot showing how runtime changes with an increase in the number of threads. 
+
+6. How does the number of threads affect runtime when there's no slop?
+
+### test4.sh: Sloppy Counting (random1) -- Runtime vs. Threads
 
 Execute `test4.sh` on ukko or akka.
 
-Create a line plot showing how runtime changes with an increase in the number of threads. How does random1 change as the number of threads increase?
+### Tasks & Questions
 
-### test5.sh: How does random2 fare?
+7. Create a line plot showing how runtime changes with an increase in the number of threads. 
+
+8. How does runtime for random1 change as the number of threads increase?
+
+### test5.sh: Sloppy Counting (random2) -- Runtime vs. Threads
 
 Execute `test5.sh` on ukko or akka.
 
-Create a line plot showing how runtime changes with an increase in the number of threads. How does runtime change as the number of threads increase?
+### Tasks & Questions
 
-### Compare sloppy methods
+9. Create a line plot showing how runtime changes with an increase in the number of threads. 
 
-Combine the results for sloppy, random1 and random2. In a paragraph, compare and contrast. Why do you think you're seeing the results you are? Which is fastest? Which is slowest? Why?
+10. How does runtime for random2 change as the number of threads increase?
 
+### Compare sloppy vs. noslop
+
+Combine the results for sloppy and noslop.
+
+### Tasks & Questions
+
+10. Make a graph showing sloppy vs. noslop runtime.
+
+In a paragraph, compare and contrast the methods. Make sure you explain:
+
+11. Why do you think you're seeing the results you are? 
+12. Which is fastest? Why?
+13. Which is slowest? Why?
+14. Which is most accurate? Why?
+ 
 ### Compare random methods
 
-Now, plot separate line series of the random1 and random2 data points (from `test4.sh` and `test5.sh`). Don't plot averages; instead the y-axis should show time but the x-axis will have one data point per observation. What do you observe about the smoothness of random1 vs. random2? Which is faster? Why do you think that is?
+15. Now, plot separate line series of the random1 and random2 data points (from `test4.sh` and `test5.sh`). Don't plot averages; instead the y-axis should show time but the x-axis will have one data point per observation (one line per experiment). 
+16. What do you observe about the smoothness of random1 vs. random2? Explain why things are the way they are.
+17. Which is faster? Why?
 
 ## Example graphs
 
-In the `img/` directory there are sample images to show what the general trends should look like. Data for the random tests may vary more widely due to randomness. If you do not see similar trends (especially for sloppy counting), check to make sure that your local counting happens in a tight loop -- in other words, your counting threads do nothing but count until they've reached the slop value and only then add it to the global value.
+In the `img/` directory there are sample images to show what the general trends should look like. Data for the random tests may vary more widely due to randomness. If you do not see similar trends (especially for sloppy counting), check to make sure that your local counting happens in a tight loop -- in other words, your counting threads do nothing but count (e.g., they don't print things) until they've reached the slop value and only then add it to the global value.
 
 ## submission
 
-Submit your code, your spreadsheet, and your text answers in a gzipped tarball (i.e., `whatever.tar.gz`) via the course website by the due date.
+Submit your code, your spreadsheet, and a document containing your graphs inline with your answers (either linked to the spreadsheet or screenshotted) in a gzipped tarball (i.e., `whatever.tar.gz`) via the course website by the due date.
