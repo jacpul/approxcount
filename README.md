@@ -77,7 +77,7 @@ Execute `test4.sh` on ukko or akka.
 
 ### Tasks & Questions
 
-7. Create a line plot showing how runtime changes with an increase in the number of threads. 
+7. Create a line plot showing how *average* runtime changes with an increase in the number of threads. 
 
 8. How does runtime for random1 change as the number of threads increase?
 
@@ -87,7 +87,7 @@ Execute `test5.sh` on ukko or akka.
 
 ### Tasks & Questions
 
-9. Create a line plot showing how runtime changes with an increase in the number of threads. 
+9. Create a line plot showing how *average* runtime changes with an increase in the number of threads. 
 
 10. How does runtime for random2 change as the number of threads increase?
 
