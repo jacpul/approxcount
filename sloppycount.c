@@ -131,7 +131,7 @@ int main(int argc, char *argv[]) {
 	int check = 0;
 	int debug = 0;
 	pthread_t *threads = NULL;
-	struct targs targs;
+	struct targs* targs;
 	int seed = time(NULL); /* get current time for seed */
 	struct timespec start, end;
 	float elapsed;
@@ -211,11 +211,10 @@ int main(int argc, char *argv[]) {
 
 	assert(threads != NULL);
 
-	/* prepare targs struct with arguments for threads */
-	targs.target = target;
-	targs.slop = slop;
-	/* you can reference targs as a pointer using &targs */
+	/* allocate array of targs -- one for each thread */
+	targs = (struct targs*)malloc(sizeof(struct targs) * numthreads);
 
+	assert(targs != NULL);
 
 	/* the outer 'reps' for loop just repeats the inner loop with the threads */
 	for (reps; reps > 0; reps--) {
@@ -228,29 +227,36 @@ int main(int argc, char *argv[]) {
 		 **/
 		for (i = 0; i < numthreads; i++) {
 
+			/* prepare this thread's targs struct */
+			targs[i].target = target;
+			targs[i].slop = slop;
+			/* you can reference the current thread's targs as a pointer using &targs[i] 
+			 * ... in each counting fuction, however, there is a local targs pointer 
+			 * for that thread. */
+
 			if (strncmp(mode, "noslop", 5) == 0) {
 
-				rc = pthread_create(&threads[i], NULL, noslop, (void *)&targs);
+				rc = pthread_create(&threads[i], NULL, noslop, (void*)&targs[i]);
 
 			} else if (strncmp(mode, "sloppy", 6) == 0) {
 
-				assert(targs.slop > 0);
+				assert(targs[i].slop > 0);
 				
 				/* FIXME: create a 'sloppy' thread here */
 
 			} else if (strncmp(mode, "random1", 7) == 0) {
 
-				assert(targs.slop > 0);
+				assert(targs[i].slop > 0);
 
 				/* for random, roll a sloppiness value between 1 and 2*slop and use it here */
 				
-				/* FIXME: set targs.slop to a random value between 1 and (2 * slop) */
+				/* FIXME: set targs[i].slop to a random value between 1 and (2 * slop) */
 
 				/* FIXME: create a 'random1' thread here (hint: you can use the 'sloppy' function)*/
 
 			} else if (strncmp(mode, "random2", 7) == 0) {
 
-				assert(targs.slop > 0);
+				assert(targs[i].slop > 0);
 
 				/* FIXME: create a 'random2' thread here */
 
@@ -287,6 +293,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	free(threads);
+	free(targs);
 
 out:
 	return 0;

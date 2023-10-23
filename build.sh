@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gcc sloppycount.c -o sloppycount -lpthread
+gcc -O0 sloppycount.c -o sloppycount -lpthread
