@@ -6,6 +6,8 @@
 #include <assert.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
+#include <time.h>
 
 /* global counter value */
 volatile long long int counter;
@@ -70,11 +72,22 @@ void *sloppy(void *args) {
 	 * after each count of targs->slop values
 	 */
 
-	struct targs *targs;
-	targs = (struct targs *)args;
+	struct targs *targs = (struct targs *)args;
 	long long int local = 0;
+	
+	while (counter < targs->target) {
+        if (local < targs->slop) {
+            local++;
+        } else {
+			pthread_mutex_lock(&lock);
+            counter += local;
+            pthread_mutex_unlock(&lock);
+            local = 0;
+        }
+    }
+	
 
-	/* FIXME: put your sloppy counting code here */
+    return NULL;
 
 }
 
@@ -86,12 +99,21 @@ void *random2(void *args) {
 	 * random value should be between 1 and (2 * targs->slop)
 	 */
 
-	struct targs *targs;
-	targs = (struct targs *)args;
-	long long unsigned tempslop;
-	long long int local = 0;
+	struct targs *targs = (struct targs *)args;
+    long long int local = 0;
 
-	/* FIXME: put your 'random2' sloppy code here */
+	while (counter < targs->target) {
+        int random_slop = (rand() % (2 * targs->slop)) + 1;
+        if (local < random_slop && counter < targs->target) {
+            local++;
+        }
+        pthread_mutex_lock(&lock);
+        counter += local;
+        pthread_mutex_unlock(&lock);
+        local = 0;
+    }
+
+    return NULL;
 
 }
 
@@ -105,7 +127,15 @@ void *noslop(void *args) {
 	struct targs *targs;
 	targs = (struct targs *)args;
 
-	/* FIXME: put your non-sloppy counting code here */
+	while (counter < targs->target) {
+        pthread_mutex_lock(&lock);
+        if (counter < targs->target) {
+            counter++;
+        }
+        pthread_mutex_unlock(&lock);
+    }
+
+    return NULL;
 
 }
 
@@ -242,23 +272,25 @@ int main(int argc, char *argv[]) {
 
 				assert(targs[i].slop > 0);
 				
-				/* FIXME: create a 'sloppy' thread here */
+				rc = pthread_create(&threads[i], NULL, sloppy, (void*)&targs[i]);
 
 			} else if (strncmp(mode, "random1", 7) == 0) {
 
 				assert(targs[i].slop > 0);
 
-				/* for random, roll a sloppiness value between 1 and 2*slop and use it here */
-				
-				/* FIXME: set targs[i].slop to a random value between 1 and (2 * slop) */
+				int random_slop = (rand() % (2 * targs[i].slop)) + 1;
+    			targs[i].slop = random_slop;
 
-				/* FIXME: create a 'random1' thread here (hint: you can use the 'sloppy' function)*/
+				rc = pthread_create(&threads[i], NULL, sloppy, (void*)&targs[i]);
 
 			} else if (strncmp(mode, "random2", 7) == 0) {
+    			assert(targs[i].slop > 0);
 
-				assert(targs[i].slop > 0);
+    			// Generate a random slop value for this thread
+    			int random_slop = (rand() % (2 * targs[i].slop)) + 1;
+    			targs[i].slop = random_slop;
 
-				/* FIXME: create a 'random2' thread here */
+    			rc = pthread_create(&threads[i], NULL, sloppy, (void*)&targs[i]);
 
 			} else {
 
@@ -271,8 +303,9 @@ int main(int argc, char *argv[]) {
 		}
 
 		/* join on all the threads, in order */
-
-		/* FIXME: wait for all threads to complete before continuing */
+		for (int i = 0; i < numthreads; i++) {
+    		pthread_join(threads[i], NULL);
+		}
 
 		/*********************************************************/
 		/* get time of loop end and print statistics 
